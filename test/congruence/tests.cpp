@@ -40,9 +40,17 @@ int main ()
   auto fa = parser.parse("f(a)");
   auto ffa = parser.parse("f(f(a))");
   auto ffffa = parser.parse("f(f(f(f(a))))");
+  auto fga = parser.parse("f(g(a))");
+  auto gb = parser.parse("g(b)");
 
   congruence_t eq;
   eq.set_congruent(fa,ffa);
 
+  std::cout << "(fa == ffa) = " << (eq.is_congruent(fa, ffa) ? "true" : "false") << "\n";
+  std::cout << "(fa == ffffa) = " << (eq.is_congruent(fa, ffffa) ? "true" : "false") << "\n";
+  std::cout << "(ffa == ffffa) = " << (eq.is_congruent(ffa, ffffa) ? "true" : "false") << "\n";
+  std::cout << "(fa == fga) = " << (eq.is_congruent(fa, fga) ? "true" : "false") << "\n";
+  std::cout << "(fa == gb) = " << (eq.is_congruent(fa, gb) ? "true" : "false") << "\n";
+  
   return 0;
 }
