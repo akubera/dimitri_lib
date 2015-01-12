@@ -170,6 +170,7 @@ namespace dimitri {
       bool is_congruent (expr_t, expr_t);
       std::vector<expr_pair_t> report_differences (expr_t, expr_t);
       void set_congruent (expr_t, expr_t);
+      bool differences_exist (expr_t, expr_t);
 
       // Expression algebra
       Args args;
@@ -405,6 +406,18 @@ namespace dimitri {
         [this](expr_pair_t e) { return this->not_directly_congruent(e); });
       diffs.erase(i,diffs.end());
       return diffs;
+    }
+  
+  template <
+    typename Expr,
+    typename Args,
+    typename Same_symbol,
+    typename Num_args
+  >
+    bool congruence_t<Expr,Args,Same_symbol,Num_args>::differences_exist
+      (expr_t e1, expr_t e2)
+    {
+      return !report_differences(e1,e2).empty();
     }
 
   template <
