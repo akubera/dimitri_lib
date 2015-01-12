@@ -1,0 +1,6 @@
+test/congruence/tests
+*.o
+*.so
+*.dylib
+*.a
+
